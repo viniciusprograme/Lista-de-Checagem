@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+{% block title %}Checklist {{checklist.id}}{% endblock %}
+{% block content %}
+<h3>Checklist {{checklist.id}}</h3>
+<ul>
+  <li><strong>Data:</strong> {{checklist.data}}</li>
+  <li><strong>Técnico:</strong> {{checklist.tecnico}}</li>
+  <li><strong>Equipamento:</strong> {{checklist.equipamento}}</li>
+  <li><strong>Local:</strong> {{checklist.local}}</li>
+</ul>
+
+<h4>Imagens</h4>
+<div class="row">
+  {% set images_dir = 'checklist_' + (checklist.id | string) %}
+  {% for img in images %}
+  <div class="col-md-4 mb-3">
+    <div class="card">
+      <img src="{{ url_for('checklist.uploaded_file', filename=images_dir + '/' + img) }}" class="card-img-top">
+      <div class="card-body">
+        <a href="{{ url_for('checklist.uploaded_file', filename=images_dir + '/' + img) }}" download class="btn btn-sm btn-primary">Download</a>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="col-12">Nenhuma imagem.</div>
+  {% endfor %}
+</div>
+
+<h4>Assinatura</h4>
+{% if signature %}
+  <img src="{{ url_for('checklist.uploaded_file', filename='assinaturas/' + signature) }}" style="max-width:400px; background: #fff;">
+{% else %}
+  <p>Sem assinatura.</p>
+{% endif %}
+
+<div class="mt-3">
+  <a href="{{ url_for('checklist.download_pdf', checklist_id=checklist.id) }}" class="btn btn-success">Baixar PDF</a>
+  <a href="{{ url_for('checklist.dashboard') }}" class="btn btn-secondary">Voltar</a>
+</div>
+
+{% endblock %}

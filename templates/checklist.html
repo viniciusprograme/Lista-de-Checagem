@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+{% block title %}Novo Checklist{% endblock %}
+{% block content %}
+<h3>Novo Checklist</h3>
+<form method="post" enctype="multipart/form-data" onsubmit="prepareAndSubmit(event)">
+  <div class="mb-3">
+    <label class="form-label">Equipamento</label>
+    <input class="form-control" name="equipamento" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Local</label>
+    <input class="form-control" name="local">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Fotos (até 10 MB cada)</label>
+    <input class="form-control" type="file" name="images" multiple accept="image/*">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Assinatura</label>
+    <div>
+      <canvas id="signature-pad" class="border" width="400" height="150"></canvas>
+      <div class="mt-2">
+        <button type="button" class="btn btn-secondary" onclick="clearPad()">Limpar</button>
+      </div>
+    </div>
+    <input type="hidden" name="signature_data" id="signature_data">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Enviar por e-mail (opcional, separar por vírgula)</label>
+    <input class="form-control" name="send_to" placeholder="supervisor@empresa.com">
+  </div>
+
+  <input type="hidden" name="questions" id="questions">
+  <button class="btn btn-primary">Finalizar Checklist</button>
+</form>
+
+<script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+<script>
+const canvas = document.getElementById('signature-pad');
+const signaturePad = new SignaturePad(canvas, { backgroundColor: 'rgba(255,255,255,0)' });
+function clearPad(){ signaturePad.clear(); }
+
+function prepareAndSubmit(e){
+  // capture signature
+  if(!signaturePad.isEmpty()){
+    document.getElementById('signature_data').value = signaturePad.toDataURL('image/png');
+  }
+  // sample questions payload (frontend can be enhanced)
+  const questions = {{ questions|tojson }};
+  document.getElementById('questions').value = JSON.stringify(questions);
+}
+</script>
+
+{% endblock %}

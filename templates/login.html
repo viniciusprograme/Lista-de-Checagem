@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <h3>Entrar</h3>
+    <form method="post">
+      <div class="mb-3">
+        <label class="form-label">E-mail</label>
+        <input class="form-control" name="email" type="email" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Senha</label>
+        <input class="form-control" name="senha" type="password" required>
+      </div>
+      <button class="btn btn-primary">Entrar</button>
+      <a href="/register" class="btn btn-link">Registrar</a>
+    </form>
+  </div>
+</div>
+{% endblock %}

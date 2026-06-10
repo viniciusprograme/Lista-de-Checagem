@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Lista de Checagem — Versão Estática</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Lista de Checagem</h1>
+    <p>Versão estática para GitHub Pages — dados salvos no navegador (localStorage).</p>
+  </header>
+
+  <main>
+    <section id="new-checklist">
+      <h2>Novo Checklist</h2>
+      <form id="checklist-form">
+        <label>Equipamento<br><input id="equipamento" required></label>
+        <label>Local<br><input id="local"></label>
+        <label>Técnico<br><input id="tecnico"></label>
+        <label>Itens (uma por linha)<br><textarea id="items" placeholder="Coloque cada item em uma linha"></textarea></label>
+        <div class="row">
+          <button type="submit">Salvar Checklist</button>
+          <button type="button" id="clear-data">Limpar tudo</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="list">
+      <h2>Checklists</h2>
+      <ul id="checklists-list"></ul>
+    </section>
+
+    <section id="view" class="hidden">
+      <h2 id="view-title">Checklist</h2>
+      <div id="view-meta"></div>
+      <ul id="view-items"></ul>
+      <div class="row">
+        <button id="back">Voltar</button>
+        <button id="export-json">Exportar JSON</button>
+        <button id="delete-checklist">Deletar</button>
+      </div>
+    </section>
+
+    <section id="import">
+      <h2>Importar / Exportar</h2>
+      <textarea id="import-area" placeholder='Cole JSON aqui para importar'></textarea>
+      <div class="row">
+        <button id="import-json">Importar JSON</button>
+        <button id="download-all">Baixar todos (JSON)</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <small>Static site — não envia dados para servidor. Use export/import para backup.</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

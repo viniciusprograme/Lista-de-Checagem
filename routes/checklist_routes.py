@@ -13,7 +13,6 @@ import config
 checklist_bp = Blueprint('checklist', __name__, url_prefix='/checklists', template_folder='../templates')
 
 
-def dashboard():
 @checklist_bp.route('/dashboard')
 @login_required
 def dashboard():
@@ -26,7 +25,6 @@ def dashboard():
     return render_template('dashboard.html', checklists=checks)
 
 
-def new_checklist():
 @checklist_bp.route('/new', methods=['GET', 'POST'])
 @login_required
 def new_checklist():

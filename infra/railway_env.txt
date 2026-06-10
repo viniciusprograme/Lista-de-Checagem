@@ -1,0 +1,45 @@
+# Paste each line below into Railway Environment Variables (KEY -> VALUE)
+
+APP_ENV=production
+SECRET_KEY=change-me
+JWT_SECRET=change-me-in-production
+JWT_SECRET_KEY=change-me-in-production
+
+# CORS origins (as JSON array)
+CORS_ORIGINS=["http://localhost:3000"]
+ORIGENS_CORS=["http://localhost:3000"]
+
+# Frontend
+NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1
+
+# Database (replace with your Railway Postgres URI if you have one)
+DATABASE_URL=postgresql+psycopg://sentinel:sentinel@postgres:5432/sentinel
+POSTGRES_USER=sentinel
+POSTGRES_PASSWORD=sentinel
+POSTGRES_DB=sentinel
+
+# Redis (if using a managed Redis, replace host/port)
+REDIS_URL=redis://redis:6379/0
+REDIS_HOST=redis
+REDIS_PORT=6379
+
+# MinIO / S3 (optional)
+MINIO_ROOT_USER=minioadmin
+MINIO_ROOT_PASSWORD=minioadmin123
+S3_BUCKET=
+S3_ACCESS_KEY=
+S3_SECRET_KEY=
+
+# SMTP
+SMTP_HOST=
+SMTP_PORT=587
+SMTP_USER=
+SMTP_PASSWORD=
+SMTP_TLS=true
+
+# App limits
+MAX_UPLOAD_SIZE=10485760
+
+# Monitoring / extras
+PROMETHEUS_ENABLED=false
+SENTRY_DSN=
